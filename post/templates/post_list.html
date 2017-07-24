@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style type="text/css">
+    h1 {
+        background-color: black;
+        color: red;
+    }
+    
+    
+    div {
+    background-color: black;
+    color: white;
+    margin: 20px 0 20px 0;
+    padding: 20px;
+    } 
+    p {
+     width: 250px;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+}
+
+    
+        
+    </style>
+    <meta charset="UTF-8">
+    <title>Post List</title>
+</head>
+<body>
+    <h1>hello</h1>
+    <ol>
+    	   {% for x in list%}
+    	   
+    		<div>
+            <a href="{%url 'detail' post_id=x.id %}"><h1>{{x.title}}</h1></a>
+            
+    		<p maxlength = "30">{{x.content}}</p>
+    		
+    		<p>{{x.updated}}</p>
+    		<p>{{x.timestamp}}</p>
+            </div>
+    	   {% endfor %}
+    </ol>
+</body>
+</html>

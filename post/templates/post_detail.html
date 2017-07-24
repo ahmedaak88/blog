@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<style type="text/css">
+	h1 {
+		background-color: black;
+		color: red;
+	}
+	body {
+		background-image: url("https://cdn.opendemocracy.net/files/imagecache/wysiwyg_imageupload_lightbox_preset/wysiwyg_imageupload/541222/Kari%20Sperring%20Discworld.jpg");
+	}
+	div {
+    background-color: black;
+    color: white;
+    margin: 20px 0 20px 0;
+    padding: 20px;
+	} 
+
+	}
+		
+	</style>
+    <meta charset="UTF-8">
+    <title>Post Create</title>
+	
+	
+	
+</head>
+<body>
+
+    
+    
+    	
+
+    		<div>
+    		<h2>{{instance.title}}</h2>
+    		
+    		<p>{{instance.content}}</p>
+    		<p>{{instance.timestamp}}</p>
+
+    		</div>
+
+    	
+    	<a href="{% url 'list' %}">Go back to the list</a>
+    
+    
+</body>
+</html>
