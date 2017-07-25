@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+	{% block head_title %}update
+	{% endblock head_title %}
+
+	<form method="POST" action="{% url 'post:update' post_id=obj.id %}">
+		{% csrf_token %}
+		{{form.as_p}}
+		<input type="submit" value="Update post">
+	</form>
+{% endblock content%}

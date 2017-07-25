@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>form create </title>
-</head>
-<body>
-	<form method="POST">
+{% extends "base.html" %}
+{% block content %}
+	{% block head_title %}create
+	{% endblock head_title %}
+	<form method="POST" action="{% url 'post:create' %}">
 		{% csrf_token %}
 		{{form.as_p}}
 		<input type="submit" value="Create post">
 	</form>
 
-</body>
-</html>
+{% endblock content%}

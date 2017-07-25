@@ -1,47 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<style type="text/css">
-    h1 {
-        background-color: black;
-        color: red;
-    }
-    
-    
-    div {
-    background-color: black;
-    color: white;
-    margin: 20px 0 20px 0;
-    padding: 20px;
-    } 
-    p {
-     width: 250px;
-     white-space: nowrap;
-     overflow: hidden;
-     text-overflow: ellipsis;
-}
-
-    
-        
-    </style>
-    <meta charset="UTF-8">
-    <title>Post List</title>
-</head>
-<body>
-    <h1>My Lists</h1>
+{% extends "base.html" %}
+{% block content %}
+    {% block head_title %}My lists{% endblock head_title %}
+       
+            
     <ol>
-    	   {% for x in list%}
-    	   
-    		<div>
+           {% for x in list%}
+            <div>
             <a href={{x.get_absoulute_url}}><h1>{{x.title}}</h1></a>
+
             <cite>the id of the post:</cite><p>{{x.name_val}}</p>
             <p>{{x.croping}}</p>
-    		
-    		
-    		<p>{{x.updated}}</p>
-    		<p>{{x.timestamp}}</p>
+            <p>{{x.updated}}</p>
+            <p>{{x.timestamp}}</p>
+            <a href={{x.update_url_post}}>Updated your post</a>
+            <a href={{x.delete_url}}>delete your post</a>
             </div>
-    	   {% endfor %}
+           {% endfor %}
     </ol>
-</body>
-</html>
+    <a href="{% url 'post:create' %}">Create a new Page</a>
+{% endblock content%}
