@@ -10,3 +10,11 @@ class Post(models.Model):
 
 	def __str__(self):
 		return self.title
+	def get_absoulute_url(self):
+		return reverse("post:detail", kwargs={"post_id": self.id})
+	def croping(self):
+		return str(self.content[0:30])
+		pass
+	def name_val(self):
+		return str(self.id) 
+		pass

@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from .models import Post
 from django.shortcuts import get_object_or_404
+from .forms import PostForm
+
 
 
 def post_detail(request, post_id):
@@ -17,3 +19,9 @@ def post_list(request):
         "list": details,
     }
     return render(request, 'post_list.html',context3)
+def post_create(request):
+    form = PostForm()
+    context = {
+    "form": form,
+    }
+    return render(request, 'post_create.html',context)
