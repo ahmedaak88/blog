@@ -1,0 +1,26 @@
+h1 {
+	color:red;
+
+}
+cite{
+	color:red;
+}
+p{
+	color: black;
+}
+.pagination{
+	position: relative;
+	left: 300px;
+	color: green;
+	background: white;
+}
+.thumbnail {
+	background-color: #c2d4dd;
+}
+.glyphicon {
+	position: relative;
+    left: -15px;
+    top:-30;
+	
+
+}

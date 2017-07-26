@@ -3,7 +3,7 @@
 	{% block head_title %}update
 	{% endblock head_title %}
 
-	<form method="POST" action="{% url 'post:update' post_id=obj.id %}">
+	<form method="POST" action="{% url 'post:update' post_id=obj.id %}" enctype="multipart/form-data">
 		{% csrf_token %}
 		{{form.as_p}}
 		<input type="submit" value="Update post">

@@ -8,6 +8,7 @@ class Post(models.Model):
 	content = models.TextField()
 	updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 	timestamp = models.DateTimeField(auto_now=False, auto_now_add = True)
+	image =  models.ImageField(upload_to="blog_images", null=True , blank=True)
 
 	def __str__(self):
 		return self.title
@@ -26,3 +27,6 @@ class Post(models.Model):
 	def name_val(self):
 		return str(self.id) 
 		pass
+	class Meta:
+		ordering = ['-timestamp','-updated']
+			

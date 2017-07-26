@@ -1,16 +1,19 @@
 {% extends "base.html" %}
+{% block head_title %}detail{% endblock head_title %}   
 {% block content %}
 
-    
-    	{% block head_title %}detail{% endblock head_title %}	
+
 
     	
 
-    		<div>
-    		<h2>{{instance.title}}</h2>
-    		<p>{{instance.content}}</p>
-    		<p>{{instance.timestamp}}</p>
-    		<a href={{instance.update_url_post}}>Updating the post </a>
+    		<div class ="#f48fb1 pink lighten-3">
+        		<h2>{{instance.title}}</h2>
+        		<p>{{instance.content|linebreaks}}</p>
+        		<p>{{instance.timestamp}}</p>
+        		<a href={{instance.update_url_post}}>Updating the post </a>
+                {% if instance.image %}
+                    <img class="responsive-img" src="{{instance.image.url}}">
+                {% endif %}
     		</div>
     }
 

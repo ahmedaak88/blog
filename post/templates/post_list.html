@@ -1,21 +1,57 @@
 {% extends "base.html" %}
+{% block head_title %}My lists{% endblock head_title %}
 {% block content %}
-    {% block head_title %}My lists{% endblock head_title %}
-       
-            
-    <ol>
-           {% for x in list%}
-            <div>
-            <a href={{x.get_absoulute_url}}><h1>{{x.title}}</h1></a>
 
-            <cite>the id of the post:</cite><p>{{x.name_val}}</p>
-            <p>{{x.croping}}</p>
-            <p>{{x.updated}}</p>
-            <p>{{x.timestamp}}</p>
-            <a href={{x.update_url_post}}>Updated your post</a>
-            <a href={{x.delete_url}}>delete your post</a>
-            </div>
+     <div class="#d1c4e9 deep-purple ">
+        <div class="row"> 
+           {% for x in list%}
+                <div class="col s6" >
+                    
+                        <div class="thumbnail">
+                            <div class="caption">
+                                    <a href={{x.get_absoulute_url}}><h1>{{x.title}}</h1></a>
+
+                                    <cite>the id of the post:</cite><p>{{x.name_val}}</p>
+                                    <p>{{x.content|truncatechars:10}}</p>
+                                    <p>{{x.updated}}</p>
+                                    <p>{{x.timestamp}}</p>
+                                    {% if x.image %}
+                                        <img class="responsive-img" src="{{x.image.url}}">
+                                    {% endif %}
+                                    <div class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                                                                    Actions
+                                        <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                            <li><a href={{x.update_url_post}}>Update your post</a></li>
+                                            <li><a href="{% url 'post:delete' post_id=x.id %}">DELETE</a></li>
+                                        </ul>
+
+                                    </div>
+                            </div>
+                        </div>
+                    
+                </div>
+
            {% endfor %}
-    </ol>
-    <a href="{% url 'post:create' %}">Create a new Page</a>
+        </div> 
+    <a href="{% url 'post:create' %}" class= "btn btn-floating pulse"><i class="glyphicon glyphicon-plus" ></i>Create a new Page</a>
+{#this is where i place my pagintatio which make the pages show less posts #}
+<div class="pagination">
+    <span class="step-links">
+        {% if list.has_previous %}
+            <a href="?page={{ list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ list.number }} of {{ list.paginator.num_pages }}.
+        </span>
+
+        {% if list.has_next %}
+            <a href="?page={{ list.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+</div>  
 {% endblock content%}
