@@ -2,19 +2,21 @@
 {% block head_title %}My lists{% endblock head_title %}
 {% block content %}
 
-     <div class="#d1c4e9 deep-purple ">
+    
         <div class="row"> 
            {% for x in list%}
+                
                 <div class="col s6" >
-                    
+                    <div class="jumbotron">
                         <div class="thumbnail">
                             <div class="caption">
-                                    <a href={{x.get_absoulute_url}}><h1>{{x.title}}</h1></a>
+                                    <a href={{x.get_absoulute_url}}><h3>{{x.title}}</h3></a>
 
-                                    <cite>the id of the post:</cite><p>{{x.name_val}}</p>
+                                    <div class="well"><cite>the id of the post:</cite><p>{{x.name_val}}</p>
                                     <p>{{x.content|truncatechars:10}}</p>
                                     <p>{{x.updated}}</p>
                                     <p>{{x.timestamp}}</p>
+                                    </div>
                                     {% if x.image %}
                                         <img class="responsive-img" src="{{x.image.url}}">
                                     {% endif %}
@@ -31,13 +33,16 @@
                                     </div>
                             </div>
                         </div>
-                    
+                    </div>
                 </div>
 
            {% endfor %}
         </div> 
     <a href="{% url 'post:create' %}" class= "btn btn-floating pulse"><i class="glyphicon glyphicon-plus" ></i>Create a new Page</a>
 {#this is where i place my pagintatio which make the pages show less posts #}
+<div class="homepage">
+    <a href="{%url 'post:home'%}">HOME PAGE</a>
+</div>
 <div class="pagination">
     <span class="step-links">
         {% if list.has_previous %}
@@ -53,5 +58,5 @@
         {% endif %}
     </span>
 </div>
-</div>  
+
 {% endblock content%}

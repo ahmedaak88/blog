@@ -15,6 +15,9 @@ class Post(models.Model):
 
 	def get_absoulute_url(self):
 		return reverse("post:detail", kwargs={"post_id": self.id})
+	def search_id(self, x ):
+		s = Post.objects.all().filter(title=x)
+		return reverse("post:detail", kwargs={"post_id": s.id})
 	def update_url_post(self):
 		return reverse("post:update", kwargs={"post_id": self.id})
 	def delete_url(self):

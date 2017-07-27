@@ -7,4 +7,6 @@ urlpatterns = [
     url(r'^create/$', views.post_create, name="create"),
     url(r'^update/(?P<post_id>\d+)$', views.post_update, name="update"),
     url(r'^delete/(?P<post_id>\d+)$', views.post_delete, name="delete"),
+    url(r'^home/$', views.post_home, name="home"),
+
 ]

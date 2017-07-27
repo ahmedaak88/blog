@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block head_title %}Home{% endblock head_title %}   
+{% block content %}
+
+<div class="page-header">
+<h1>WELCOME TO AHMAD ALI POST<small>....dont judge me</h1>
+   </div> 	
+<div class="jumbotron">
+  
+  <div class ="card-panel teal lighten-2">
+            
+                <a href={{post_last.get_absoulute_url}}><h2>{{post_last.title}}</h2></a>
+                <p>{{post_last.content|linebreaks}}</p>
+                <p>{{post_last.timestamp}}</p>
+                <a href={{post_last.update_url_post}}>Updating the post </a>
+                {% if post_last.image %}
+                    <img class="responsive-img" src="{{post_last.image.url}}">
+                {% endif %}
+
+            </div>
+{% endblock content%}

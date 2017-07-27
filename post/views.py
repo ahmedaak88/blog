@@ -7,7 +7,12 @@ from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
-
+def post_home(request):
+    obj = Post.objects.all().first()
+    context = {
+    "post_last": obj,
+    }
+    return render(request, 'post_home.html', context)
 def post_detail(request, post_id):
     obj = get_object_or_404(Post , id = post_id)
     context = {

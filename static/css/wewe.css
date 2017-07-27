@@ -1,9 +1,9 @@
 h1 {
-	color:red;
+	color:black;
 
 }
 cite{
-	color:red;
+	color:black;
 }
 p{
 	color: black;
@@ -11,16 +11,20 @@ p{
 .pagination{
 	position: relative;
 	left: 300px;
-	color: green;
+	color: black;
 	background: white;
 }
-.thumbnail {
-	background-color: #c2d4dd;
-}
+
+
 .glyphicon {
 	position: relative;
     left: -15px;
     top:-30;
 	
 
+}
+.homepage {
+	
+	position: relative;
+	left :100px;
 }

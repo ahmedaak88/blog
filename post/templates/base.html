@@ -8,10 +8,15 @@
 	</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
 	<link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
-	<link rel="stylesheet" href="{% static "css/bbmm.css" %}">
+	<link rel="stylesheet" href="{% static 'css/wewe.css' %}">
 </head>
 <body>
-	<h1>MY Project</h1>
+		<ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="{%url 'post:home'%}">Home</a></li>
+            <li role="presentation"><a href="{%url 'post:list'%}">list</a></li>
+        </ul>
+	
+
 	 {% include 'messgese.html' %}
 	 <div class="container">
 		{% block content %}
