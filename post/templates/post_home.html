@@ -18,4 +18,18 @@
                 {% endif %}
 
             </div>
+
+    <div class="jumbotron">
+        <h1>Event</h1>
+        <div class ="#7986cb indigo lighten-2">
+            <h3>{{last_event.event_name}}</h3>
+            <h2>{{last_event.event_detail}}</h2>
+            {% if last_event.event_pic %}
+                <img class="responsive-img" src="{{last_event.evenet_pic.url}}">
+            {% endif %}
+            <cite>time the event start</cite><p>{{last_event.startdate_event}}</p>
+            <cite>time event ends</cite><p>{{last_event.enddate_event}}</p>
+
+        </div>
+    </div>
 {% endblock content%}

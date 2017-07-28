@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block head_title %}My lists{% endblock head_title %}
+{% block content %}
+
+    
+        <div class="row"> 
+           {% for x in list%}
+                
+                <div class="col s6" >
+                    <div class="jumbotron">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                    <h3>{{x.event_name}}</h3>
+
+                                    <div class="well"><cite>the id of the post:</cite><p>{{x.id}}</p>
+                                    <p>{{x.event_detail|truncatechars:10}}</p>
+                                    <cite>the time the event start</cite><p>{{x.startdate_event}}</p>
+                                    <cite>the time the event ends</cite><p>{{x.enddate_event}}</p>
+                                    </div>
+                                    {% if x.image %}
+                                        <img class="responsive-img" src="{{x.image.url}}">
+                                    {% endif %}
+                                    <div class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                                                                    Actions
+                                        <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                            <li><a href="{% url 'post:eventupdate' post_id=x.id %}">Update your post</a></li>
+                                            <li><a href="{% url 'post:eventdelete' post_id=x.id %}">DELETE</a></li>
+                                        </ul>
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+           {% endfor %}
+        </div> 
+    <a href="{% url 'post:eventcreate' %}" class= "btn btn-floating pulse"><i class="glyphicon glyphicon-plus" ></i>Create a new Page</a>
+{#this is where i place my pagintatio which make the pages show less posts #}
+<div class="homepage">
+    <a href="{%url 'post:home'%}">HOME PAGE</a>
+</div>
+<div class="pagination">
+    <span class="step-links">
+        {% if list.has_previous %}
+            <a href="?page={{ list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ list.number }} of {{ list.paginator.num_pages }}.
+        </span>
+
+        {% if list.has_next %}
+            <a href="?page={{ list.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock content%}

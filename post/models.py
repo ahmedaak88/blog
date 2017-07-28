@@ -32,4 +32,14 @@ class Post(models.Model):
 		pass
 	class Meta:
 		ordering = ['-timestamp','-updated']
-			
+
+class Event(models.Model):
+	event_name = models.CharField(max_length=160)
+	event_detail = models.TextField()
+	event_pic = models.ImageField(upload_to="blog_images", null=True , blank=True)
+	startdate_event = models.DateField(null=True)
+	enddate_event = models.DateField(null=True)
+	def __str__(self):
+		return self.event_name
+	class Meta:
+		ordering = ['startdate_event','enddate_event']
