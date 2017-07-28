@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block head_title %}detail{% endblock head_title %}   
 {% block content %}
-
+{% load urlfy %}
 
 
     	
@@ -10,15 +10,26 @@
         		<h2>{{instance.title}}</h2>
         		<p>{{instance.content|linebreaks}}</p>
         		<p>{{instance.timestamp}}</p>
-        		<a href={{instance.update_url_post}}>Updating the post </a>
+        		<a href={{instance.update_url_post}} class="btn btn-primary">Updating the post </a>
                 {% if instance.image %}
                     <img class="responsive-img" src="{{instance.image.url}}">
                 {% endif %}
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{request.build_absolute_uri}}" class="btn btn-info">
+                    Share on Facebook
+                </a>
+                {{share_string}}
+                <a href="https://twitter.com/home?status={{instance.content|urlfy}}%20{{request.build_absolute_uri}}" class="btn btn-info">
+                     Share on Twitter
+                </a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{request.build_absolute_uri}}&title={{instance.title|urlfy}}&summary={{instance.content|urlfy}}&source={{request.build_absolute_uri}}" class="btn btn-info">
+                    Share on Linkedin
+                </a>
+
     		</div>
         </div>  
     }
 
-    	
-    	<a href="{% url 'post:list' %}">Go back to the list</a>
+
+    	<a href="{% url 'post:list' %} " class="btn btn-primary">Go back to the list</a>
     
 {% endblock content%}
