@@ -27,7 +27,7 @@
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                             <li><a href={{x.update_url_post}}>Update your post</a></li>
-                                            <li><a href="{% url 'post:delete' post_id=x.id %}">DELETE</a></li>
+                                            <li><a href="{% url 'post:delete' slug=x.slug %}">DELETE</a></li>
                                         </ul>
 
                                     </div>

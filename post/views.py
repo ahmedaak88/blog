@@ -6,6 +6,7 @@ from .forms import PostForm ,EventForm
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from urllib.parse import quote
+from django.http import Http404
 
 
 def post_home(request):
@@ -16,8 +17,8 @@ def post_home(request):
     "post_last": obj,
     }
     return render(request, 'post_home.html', context)
-def post_detail(request, post_id):
-    obj = get_object_or_404(Post , id = post_id)
+def post_detail(request, slug):
+    obj = get_object_or_404(Post , slug=slug)
     context = {
         "instance": obj,
         "share_string": quote(obj.content),
@@ -43,6 +44,8 @@ def post_list(request):
     }
     return render(request, 'post_list.html',context3)
 def post_create(request):
+    if not (request.user.is_staff or request.user.is_superuser):
+        raise Http404
     form = PostForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         form.save()
@@ -53,8 +56,8 @@ def post_create(request):
     "form": form,
     }
     return render(request, 'post_create.html',context)
-def post_update(request, post_id):
-    obj = get_object_or_404(Post, id=post_id)
+def post_update(request, slug):
+    obj = get_object_or_404(Post, slug=slug)
     form = PostForm(request.POST or None ,request.FILES or None , instance=obj)
     if form.is_valid():
         form.save()
@@ -66,8 +69,8 @@ def post_update(request, post_id):
     }
     return render(request, 'post_update.html', context)
 
-def post_delete(request, post_id):
-    post_obj = Post.objects.get(id=post_id)
+def post_delete(request, slug):
+    post_obj = Post.objects.get(slug=slug)
     post_obj.delete()
     messages.warning(request, "the post has been deleted")
     return redirect("post:list")
@@ -76,6 +79,7 @@ def event_create(request):
     form = EventForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         form.save()
+        return redirect("post:eventlist")
     context = {
     "form": form,
     }
