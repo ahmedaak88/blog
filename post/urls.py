@@ -10,8 +10,8 @@ urlpatterns = [
     url(r'^home/$', views.post_home, name="home"),
     url(r'^eventcreate/$', views.event_create, name="eventcreate"),
     url(r'^eventlist/$', views.event_list, name="eventlist"),
-    url(r'^eventdelete/(?P<post_id>\d+)$', views.event_delete, name="eventdelete"),
-    url(r'^eventeupdate/(?P<post_id>\d+)$', views.event_update, name="eventupdate"),
+    url(r'^eventdelete/(?P<event_slug>[-\w]+)$', views.event_delete, name="eventdelete"),
+    url(r'^eventeupdate/(?P<event_slug>[-\w]+)$', views.event_update, name="eventupdate"),
 
 
 ]

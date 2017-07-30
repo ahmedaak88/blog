@@ -76,6 +76,8 @@ def post_delete(request, slug):
     return redirect("post:list")
 
 def event_create(request):
+    if not (request.user.is_staff or request.user.is_superuser):
+        raise Http404
     form = EventForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         form.save()
@@ -103,13 +105,13 @@ def event_list(request):
     }
     return render(request, 'event_list.html',context3)
 
-def event_delete(request, post_id):
-    post_obj = Event.objects.get(id=post_id)
+def event_delete(request, event_slug):
+    post_obj = Event.objects.get(event_slug=event_slug)
     post_obj.delete()
     messages.warning(request, "the post has been deleted")
     return redirect("post:eventlist")
-def event_update(request, post_id):
-    obj = get_object_or_404(Event, id=post_id)
+def event_update(request, event_slug):
+    obj = get_object_or_404(Event, event_slug=event_slug)
     form = EventForm(request.POST or None ,request.FILES or None , instance=obj)
     if form.is_valid():
         form.save()

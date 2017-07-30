@@ -26,8 +26,8 @@
                                         <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                            <li><a href="{% url 'post:eventupdate' post_id=x.id %}">Update your post</a></li>
-                                            <li><a href="{% url 'post:eventdelete' post_id=x.id %}">DELETE</a></li>
+                                            <li><a href="{% url 'post:eventupdate' event_slug=x.event_slug %}">Update your post</a></li>
+                                            <li><a href="{% url 'post:eventdelete' event_slug=x.event_slug %}">DELETE</a></li>
                                         </ul>
                                     
                             </div>

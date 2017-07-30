@@ -3,7 +3,7 @@
 	{% block head_title %}update
 	{% endblock head_title %}
 
-	<form method="POST" action="{% url 'post:eventupdate' post_id=obj.id %}" enctype="multipart/form-data">
+	<form method="POST" action="{% url 'post:eventupdate' event_slug=obj.event_slug %}" enctype="multipart/form-data">
 		{% csrf_token %}
 		{{form.as_p}}
 		<input type="submit" value="Update post">

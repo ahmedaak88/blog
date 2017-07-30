@@ -39,6 +39,8 @@ class Post(models.Model):
 		ordering = ['-timestamp','-updated']
 
 class Event(models.Model):
+	event_author = models.ForeignKey(User, default=1)
+	event_slug = models.SlugField(unique=True, null=True)
 	event_name = models.CharField(max_length=160)
 	event_detail = models.TextField()
 	event_pic = models.ImageField(upload_to="blog_images", null=True , blank=True)
@@ -57,5 +59,13 @@ def post_reciever(sender, instance, *args, **kwargs):
 			slug= "%s-%s"%(slug , instance.id)
 		instance.slug = slug 
 		instance.save()
-
+def event_reciever(sender, instance , *args, **kwargs):
+	if not instance.event_slug:
+		slug= slugify(instance.event_name)
+		qs= Event.objects.filter(event_slug=slug).order_by("-id")
+		if qs.exists():
+			slug = "%s-%s"%(slug, instance.id)
+		instance.event_slug= slug
+		instance.save()
+post_save.connect(event_reciever,sender=Event)
 post_save.connect(post_reciever,sender=Post)
