@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% block head_title %}My lists{% endblock head_title %}
+{% block head_link %}
+   {% endblock head_link %}   
 {% block content %}
 
     
@@ -11,6 +13,7 @@
                         <div class="thumbnail">
                             <div class="caption">
                                     <a href={{x.get_absoulute_url}}><h3>{{x.title}}</h3></a>
+                                    <h4>{{x.publish|timesince}}</h4>
 
                                     <div class="well"><cite>the id of the post:</cite><p>{{x.name_val}}</p>
                                     <p>{{x.content|truncatechars:10}}</p>
@@ -18,9 +21,12 @@
                                     <p>{{x.timestamp}}</p>
                                     </div>
                                     {% if x.image %}
-                                        <img class="responsive-img" src="{{x.image.url}}">
+                                        <a href="#" class="thumbnail">
+                                            <img src="{{x.image.url}}" alt="...">
+                                         </a>
                                     {% endif %}
-                                    <div class="dropdown">
+                                    {% if user.is_superuser or user.is_staff %}
+                                        <div class="dropdown">
                                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                                                                                     Actions
                                         <span class="caret"></span>
@@ -31,6 +37,9 @@
                                         </ul>
 
                                     </div>
+                                        
+                                    {% endif %}
+                                    
                             </div>
                         </div>
                     </div>
@@ -38,7 +47,9 @@
 
            {% endfor %}
         </div> 
-    <a href="{% url 'post:create' %}" class= "btn btn-floating pulse"><i class="glyphicon glyphicon-plus" ></i>Create a new Page</a>
+    {% if user.is_superuser or user.is_staff %}
+        <a href="{% url 'post:create' %}" class= "btn btn-floating pulse"><i class="glyphicon glyphicon-plus" ></i>Create a new Page</a>
+    {% endif %}
 {#this is where i place my pagintatio which make the pages show less posts #}
 <div class="homepage">
     <a href="{%url 'post:home'%}">HOME PAGE</a>

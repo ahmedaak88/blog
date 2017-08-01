@@ -1,5 +1,7 @@
 {% extends "base.html" %}
-{% block head_title %}Home{% endblock head_title %}   
+{% block head_title %}Home{% endblock head_title %}
+{% block head_link %}
+   {% endblock head_link %}   
 {% block content %}
 
 <div class="page-header">
@@ -14,7 +16,9 @@
                 <p>{{post_last.timestamp}}</p>
                 <a href={{post_last.update_url_post}} class="btn btn-info">Updating the post </a>
                 {% if post_last.image %}
-                    <img class="responsive-img" src="{{post_last.image.url}}">
+                    <a href="#" class="thumbnail">
+                        <img src="{{post_last.image.url}}" alt="...">
+                    </a>
                 {% endif %}
 
             </div>

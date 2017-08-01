@@ -12,6 +12,9 @@ urlpatterns = [
     url(r'^eventlist/$', views.event_list, name="eventlist"),
     url(r'^eventdelete/(?P<event_slug>[-\w]+)$', views.event_delete, name="eventdelete"),
     url(r'^eventeupdate/(?P<event_slug>[-\w]+)$', views.event_update, name="eventupdate"),
+    url(r'^signup/$', views.usersignup, name="signup"),
+    url(r'^login/$', views.userlogin, name="login"),
+    url(r'^logout/$', views.userlogout, name="logout"),
 
 
 ]

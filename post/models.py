@@ -14,6 +14,8 @@ class Post(models.Model):
 	timestamp = models.DateTimeField(auto_now=False, auto_now_add = True)
 	image =  models.ImageField(upload_to="blog_images", null=True , blank=True)
 	slug = models.SlugField(unique=True, null=True)
+	publish = models.DateField()
+	draft = models.BooleanField(default=True)
 
 	def __str__(self):
 		return self.title

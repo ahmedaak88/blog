@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% block head_title %}detail{% endblock head_title %}   
+{% block head_link %}
+   {% endblock head_link %}   
 {% block content %}
 {% load urlfy %}
 
@@ -12,7 +14,9 @@
         		<p>{{instance.timestamp}}</p>
         		<a href={{instance.update_url_post}} class="btn btn-primary">Updating the post </a>
                 {% if instance.image %}
-                    <img class="responsive-img" src="{{instance.image.url}}">
+                    <a href="#" class="thumbnail">
+                        <img src="{{instance.image.url}}" alt="...">
+                    </a>
                 {% endif %}
                 <a href="https://www.facebook.com/sharer/sharer.php?u={{request.build_absolute_uri}}" class="btn btn-info">
                     Share on Facebook
@@ -31,5 +35,9 @@
 
 
     	<a href="{% url 'post:list' %} " class="btn btn-primary">Go back to the list</a>
-    
+{% if request.user.is_authenticated %}       
+{% include 'django_comments.html' %}
+{% else %}
+    <h3>login to post</h3>
+{% endif %}    
 {% endblock content%}
