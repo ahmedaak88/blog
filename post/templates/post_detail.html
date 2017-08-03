@@ -32,9 +32,11 @@
     		</div>
         </div>  
     }
-
-
+<!-- facebook likes and comments-->
+<div class="fb-like" data-href="{{request.build_absolute_uri}}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+<div class="fb-comments" data-href="{{request.build_absolute_uri}}" data-numposts="5"></div>
     	<a href="{% url 'post:list' %} " class="btn btn-primary">Go back to the list</a>
+
 {% if request.user.is_authenticated %}       
 {% include 'django_comments.html' %}
 {% else %}

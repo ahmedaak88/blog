@@ -5,10 +5,20 @@ from django.shortcuts import get_object_or_404
 from .forms import PostForm , UserSignUp ,UserLogin ,EventForm
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.http import Http404
+from django.http import Http404 ,JsonResponse
 from django.utils import timezone 
 from django.db.models import Q
 from django.contrib.auth import authenticate , login ,logout
+
+def search_bar(request):
+    obj = Post.objects.all()
+    details = []
+    for x in obj:
+        details = details + [x.title]
+    context = {
+    "details": details,
+    }
+    return JsonResponse(context,safe=False)
 
 def userlogin(request):
     context={}
