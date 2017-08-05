@@ -75,7 +75,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'blog.wsgi.application'
-
+FIXTURE_DIRS =('~/Development/myownproject/blog/post/fixtures/')
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases

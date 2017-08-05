@@ -11,6 +11,12 @@ from django.db.models import Q
 from django.contrib.auth import authenticate , login ,logout
 from datetime import date
 
+import json
+
+    
+
+
+
 
 
 
@@ -71,6 +77,7 @@ def userlogout(request):
 
 
 def post_home(request):
+
     obj = Post.objects.all().first()
     if Event.objects.all().exists():
         today = timezone.now().date()
@@ -135,6 +142,7 @@ def post_list(request):
         contacts = paginator.page(paginator.num_pages)
 
     context3 = {
+        
         "user": request.user,
         "list": contacts,
         "today": today,
