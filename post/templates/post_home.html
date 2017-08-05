@@ -22,9 +22,11 @@
                 {% endif %}
 
             </div>
+{% if x %}
+    
 
     <div class="jumbotron">
-        <h1>Event</h1>
+        <h1>Upcoming Event</h1>
         <div class ="#7986cb indigo lighten-2">
             <h3>{{last_event.event_name}}</h3>
             <h2>{{last_event.event_detail}}</h2>
@@ -36,4 +38,5 @@
 
         </div>
     </div>
+    {% endif %}
 {% endblock content%}

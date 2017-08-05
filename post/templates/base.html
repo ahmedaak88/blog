@@ -17,11 +17,15 @@
 		<ul class="nav nav-tabs">
             <li role="presentation" class="active"><a href="{%url 'post:home'%}">Home</a></li>
             <li role="presentation"><a href="{%url 'post:list'%}">list</a></li>
+            
             <li role="presentation"><a href="{%url 'post:eventlist'%}">events</a></li>
             <li role="presentation"><a href="{%url 'post:login'%}">login</a></li>
             <li role="presentation"><a href="{%url 'post:signup'%}">signup</a></li>
             <li role="presentation"><a href="{%url 'post:logout'%}">logout</a></li>
-            <li role="presentation"><a href="{%url 'post:create'%}">create post</a></li>
+            {% if user.is_superuser or user.is_staff %}
+            	<li role="presentation"><a href="{%url 'post:create'%}">create post</a></li>
+            {% endif %}
+            
 
         </ul>
 	

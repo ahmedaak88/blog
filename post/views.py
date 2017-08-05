@@ -9,12 +9,17 @@ from django.http import Http404 ,JsonResponse
 from django.utils import timezone 
 from django.db.models import Q
 from django.contrib.auth import authenticate , login ,logout
+from datetime import date
+
+
+
+
 
 def search_bar(request):
-    obj = Post.objects.all()
+    obj = Card.all()
     details = []
     for x in obj:
-        details = details + [x.title]
+        details = details + [x.names]
     context = {
     "details": details,
     }
@@ -67,12 +72,28 @@ def userlogout(request):
 
 def post_home(request):
     obj = Post.objects.all().first()
-    event = Event.objects.all().first()
-    context = {
-    "user": request.user,
-    "last_event": event,
-    "post_last": obj,
-    }
+    if Event.objects.all().exists():
+        today = timezone.now().date()
+        event = Event.objects.all()
+        x = False
+        for y in event:
+            if y.startdate_event >= today:
+                event = y
+                x = True 
+                break
+
+        context = {
+        "x": x,
+        "today": today,
+        "user": request.user,
+        "last_event": event,
+        "post_last": obj,
+        }
+    else:
+        context = {
+        "user": request.user,
+        "post_last": obj,
+        }
     return render(request, 'post_home.html', context)
 def post_detail(request, slug):
     obj = get_object_or_404(Post , slug=slug)

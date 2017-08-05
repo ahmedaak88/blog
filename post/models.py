@@ -51,7 +51,7 @@ class Event(models.Model):
 	def __str__(self):
 		return self.event_name
 	class Meta:
-		ordering = ['startdate_event','enddate_event']
+		ordering = ['startdate_event']
 
 def post_reciever(sender, instance, *args, **kwargs):
 	if not instance.slug:
