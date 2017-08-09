@@ -11,21 +11,12 @@ from django.db.models import Q
 from django.contrib.auth import authenticate , login ,logout
 from datetime import date
 
-import json
-
-    
-
-
-
-
-
-
 
 def search_bar(request):
-    obj = Card.all()
+    obj = Post.objects.all()
     details = []
     for x in obj:
-        details = details + [x.names]
+        details = details + [x.title]
     context = {
     "details": details,
     }
@@ -148,6 +139,7 @@ def post_list(request):
         "today": today,
     }
     return render(request, 'post_list.html',context3)
+
 def post_create(request):
     if not (request.user.is_staff or request.user.is_superuser):
         raise Http404

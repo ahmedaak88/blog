@@ -14,7 +14,7 @@
             {% csrf_token %}
                 <input type="hidden" name="name" value="{{request.user.username}}">
                 <input type="hidden" name="email" value="{{request.user.email}}">
-                {# <input type="text" class="form-control input-lg" name="comment"> #}
+               <!-- {# <input type="text" class="form-control input-lg" name="comment"> #}-->
                 <textarea type="text" class="form-control input-lg" name="comment"> </textarea>
                 {{form.content_type}}
                 {{form.object_pk}}
